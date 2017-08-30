@@ -6,8 +6,11 @@ export default class SingleStudent extends Component {
   constructor(props){
     super(props)
     this.state = {
-      student: {}
+      student: {},
+      campuses: []
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount () {
@@ -18,17 +21,42 @@ export default class SingleStudent extends Component {
       .then(student => this.setState({
         student
       }));
+
+    axios.get('/api/campuses')
+      .then(res => res.data)
+      .then(campuses => this.setState({ campuses }));
+
   }
+
+  handleSubmit(event){
+    const studentId = this.props.match.params.id;
+
+    axios.delete(`api/students/${studentId}`)
+      .then(alert('Student unenrolled; redirecting to students page'))
+      .catch(err => alert(err));
+  }
+
 
   render () {
     const student = this.state.student;
+    const campusAry = this.state.campuses.filter(campus => {
+      return Number(student.campusId) === Number(campus.id);
+    });
+    const campus = Object(campusAry[0]);
+
+    const handleSubmit = this.handleSubmit;
 
     return (
       <div className='student'>
-        <ul>
-          <li>{student.fullName}</li>
-          <li>{`e-mail: ${student.email}`}</li>
-        </ul>
+        <br></br>
+        <h3>{student.fullName}</h3>
+          <ul>
+            <li>{`e-mail: ${student.email}`}</li>
+            <li>{`campus: ${campus.name}`}</li>
+          </ul>
+          <form onSubmit={handleSubmit} action="http://localhost:1337/#/students">
+            <button type="submit" className="button" >Delete Student</button>
+          </form>
       </div>
     )
 
