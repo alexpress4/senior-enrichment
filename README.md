@@ -88,7 +88,7 @@ DELETE
 
 ### How to test functionality without a frontend
 - GET: use your browser
-- POST / PUT / DELETE : 
+- POST / PUT / DELETE :
  - CLI (command line interface) with `curl`
    - e.g. `curl -H "Content-Type: application/json" -X POST -d '{"username":"kate","password":"1234"}' http://localhost:3000/api/login`
    - `-H`: headers. `-X`: verb. `-d`: data (must be of the type specified in headers). http://[address]:[port]/[route_path]
@@ -109,3 +109,8 @@ Once you've recorded your screencast, please *upload it to YouTube as an unliste
 - Frontend logic and functionality (25%)
 - Design + Bonus features (up to 10 Extra Credit points)
 
+ https://upload.wikimedia.org/wikipedia/commons/8/8b/Free-floating_planet_CFBDSIR_J214947.2-040308.9_%28artist’s_impression%29.jpg
+
+ https://img.purch.com/h/1000/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzAxOS8wOTEvb3JpZ2luYWwvanVseS1za3l3YXRjaGluZy1wb3J0bGFuZC5qcGc=
+
+https://earthobservatory.nasa.gov/Features/CloudsGallery/images/earth_render_2012.jpg

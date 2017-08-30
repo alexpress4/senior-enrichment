@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Home extends Component {
@@ -9,12 +10,46 @@ export default class Home extends Component {
     }
   }
 
-  componentDidMount () {
+  componentWillMount () {
     axios.get('/api/campuses')
       .then(res => res.data)
-      .then(students => this.setState({ campuses }));
+      .then(campuses => this.setState({ campuses }));
   }
 
+  render () {
 
+    const campuses = this.state.campuses;
+
+    return (
+      <div>
+        <h3>Campus Directory</h3>
+        <h5>click on a campus to see its student directory</h5>
+        <div>
+          <input></input>
+        </div>
+        <div className="campuses">
+          <ul>
+            {
+              campuses.map(campus => {
+                return (
+                  <li key={campus.id}>
+                    <Link to={`/campuses/${campus.id}`}> { campus.name } </Link>
+                      <br></br>
+                    <img src={campus.image} />
+                  </li>
+                )
+              })
+            }
+          </ul>
+          <div>
+          <form>
+            Campus Name: <input type="text" name="fname"/><br></br>
+          </form>
+          </div>
+        </div>
+      </div>
+    )
+
+  }
 
 }
