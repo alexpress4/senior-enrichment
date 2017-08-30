@@ -8,6 +8,7 @@ export default class Home extends Component {
     this.state = {
       campuses: []
     }
+
   }
 
   componentWillMount () {
@@ -18,15 +19,13 @@ export default class Home extends Component {
 
   render () {
 
+
     const campuses = this.state.campuses;
 
     return (
       <div>
         <h3>Campus Directory</h3>
         <h5>click on a campus to see its student directory</h5>
-        <div>
-          <input></input>
-        </div>
         <div className="campuses">
           <ul>
             {
@@ -41,11 +40,6 @@ export default class Home extends Component {
               })
             }
           </ul>
-          <div>
-          <form>
-            Campus Name: <input type="text" name="fname"/><br></br>
-          </form>
-          </div>
         </div>
       </div>
     )
