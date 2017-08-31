@@ -54,7 +54,7 @@ export default class SingleStudent extends Component {
         <h3>{student.fullName}</h3>
           <ul>
             <li>{`e-mail: ${student.email}`}</li>
-            <li>{`campus: ${campus.name}`}</li>
+            <li><Link to={`/campuses/${campus.id}`}> {`Campus: ${campus.name}`}  </Link></li>
           </ul>
           <Link to={`/editStudent/${student.id}`}> {`Edit ${student.fullName}`}  </Link>
           <h5>----------------------</h5>
