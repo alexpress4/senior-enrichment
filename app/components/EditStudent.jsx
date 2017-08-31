@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class AddStudent extends Component {
+export default class EditStudent extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -28,19 +28,21 @@ export default class AddStudent extends Component {
   handleSubmit(event){
     event.preventDefault();
 
-    axios.post('/api/students', {
+    const studentId = this.props.match.params.id;
+
+    axios.put(`/api/students/${studentId}`, {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
         campusId: this.state.campusId
        })
-      .then((res) => this.setState({
+      .then(() => this.setState({
         firstName: '',
         lastName: '',
         email: ''
       }))
-      .then(() => alert('Student successfully enrolled'))
-      .catch(err => alert('Incorrect information: check that this student is not already enrolled and all fields are filled out'));
+      .then(() => alert('Student successfully edited'))
+      .catch(err => alert('Incorrect information: check that all fields are filled out and the student email is not already in use'));
 
   }
 
@@ -61,7 +63,7 @@ export default class AddStudent extends Component {
       <div>
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Add a Student: </label>
+              <label>Edit a Student: </label>
                 <br></br>
                 <input
                   type="text"
@@ -99,7 +101,7 @@ export default class AddStudent extends Component {
                 </select>
             </div>
             <div className="form-group">
-              <button type="submit" className="button" >Enroll Student</button>
+              <button type="submit" className="button" >Edit Student</button>
             </div>
           </form>
         </div>

@@ -25,7 +25,7 @@ export default class Home extends Component {
     return (
       <div>
         <h3>Campus Directory</h3>
-        <h5>click on a campus to see its student directory</h5>
+        <h5>click on a campus to see its student directory or edit</h5>
         <div className="campuses">
           <ul>
             {

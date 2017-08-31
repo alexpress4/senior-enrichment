@@ -22,7 +22,7 @@ export default class Students extends Component {
     return (
       <div>
         <h3>Student Directory</h3>
-        <h5>click on a student to get more info</h5>
+        <h5>click on a student to get more infomation or edit</h5>
         <div className="students">
           <ul>
             {

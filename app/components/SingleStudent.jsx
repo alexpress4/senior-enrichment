@@ -44,6 +44,8 @@ export default class SingleStudent extends Component {
     });
     const campus = Object(campusAry[0]);
 
+    const studentId = this.props.match.params.id;
+
     const handleSubmit = this.handleSubmit;
 
     return (
@@ -54,6 +56,8 @@ export default class SingleStudent extends Component {
             <li>{`e-mail: ${student.email}`}</li>
             <li>{`campus: ${campus.name}`}</li>
           </ul>
+          <Link to={`/editStudent/${student.id}`}> {`Edit ${student.fullName}`}  </Link>
+          <h5>----------------------</h5>
           <form onSubmit={handleSubmit} action="http://localhost:1337/#/students">
             <button type="submit" className="button" >Delete Student</button>
           </form>

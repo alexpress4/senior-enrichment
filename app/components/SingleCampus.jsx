@@ -36,7 +36,7 @@ export default class SingleCampus extends Component {
     const campusId = this.props.match.params.id;
 
     axios.delete(`api/campuses/${campusId}`)
-      .then(alert('Campus demolished and associated students unenrolled; redirecting to home page'))
+      .then(alert('Campus demolished; redirecting to home page'))
       .catch(err => alert(err));
   }
 
@@ -65,6 +65,8 @@ export default class SingleCampus extends Component {
             }
           </ul>
         </div>
+        <Link to={`/editCampus/${campus.id}`}> {`Edit ${campus.name}`}  </Link>
+        <h5>----------------------</h5>
         <form onSubmit={handleSubmit} action="http://localhost:1337/#/">
           <button type="submit" className="button" >Delete Campus</button>
         </form>

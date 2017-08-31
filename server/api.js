@@ -74,6 +74,7 @@ api.put('/students/:id', function(req, res, next){
 
   Student.findById(currentId)
     .then(result => result.update(req.body))
+    .then(result => res.send(result))
     .catch(next);
 });
 
@@ -82,6 +83,7 @@ api.put('/campuses/:id', function(req, res, next){
 
   Campus.findById(currentId)
     .then(result => result.update(req.body))
+    .then(result => res.send(result))
     .catch(next);
 });
 
@@ -96,7 +98,7 @@ api.delete('/students/:id', function(req, res, next){
       id: currentId
     }
   })
-    .then(() => res.sendStatus(200))
+    .then(result => res.sendStatus(200))
     .catch(next);
 });
 
@@ -108,7 +110,7 @@ api.delete('/campuses/:id', function(req, res, next){
       id: currentId
     }
   })
-    .then(() => res.sendStatus(200))
+    .then(result => res.sendStatus(200))
     .catch(next);
 });
 
