@@ -14,4 +14,6 @@ Campus.hasMany(Student, {
   hooks: true
 });
 
+Student.belongsTo(Campus);
+
 module.exports = {User, Student, Campus}

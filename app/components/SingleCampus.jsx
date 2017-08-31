@@ -9,6 +9,8 @@ export default class SingleCampus extends Component {
       campus: {},
       students: []
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount () {
@@ -30,9 +32,19 @@ export default class SingleCampus extends Component {
       }))
   }
 
+  handleSubmit(event){
+    const campusId = this.props.match.params.id;
+
+    axios.delete(`api/campuses/${campusId}`)
+      .then(alert('Campus demolished and associated students unenrolled; redirecting to home page'))
+      .catch(err => alert(err));
+  }
+
   render () {
     const students = this.state.students;
     const campus = this.state.campus;
+
+    const handleSubmit = this.handleSubmit;
 
     return (
       <div>
@@ -53,6 +65,9 @@ export default class SingleCampus extends Component {
             }
           </ul>
         </div>
+        <form onSubmit={handleSubmit} action="http://localhost:1337/#/">
+          <button type="submit" className="button" >Delete Campus</button>
+        </form>
       </div>
     )
 

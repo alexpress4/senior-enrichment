@@ -88,6 +88,7 @@ api.put('/campuses/:id', function(req, res, next){
 // STUDENT & CAMPUS DELETE ROUTES
 
 api.delete('/students/:id', function(req, res, next){
+
   var currentId = req.params.id;
 
   Student.destroy({
