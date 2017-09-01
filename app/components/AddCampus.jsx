@@ -6,7 +6,8 @@ export default class AddCampus extends Component {
   constructor(props){
     super(props)
     this.state = {
-      campusInput: ''
+      campusInput: '',
+      campusImageUrl: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -17,24 +18,29 @@ export default class AddCampus extends Component {
     const value = event.target.value;
 
     this.setState({
-      campusInput: value
-    });
+      [event.target.name]: value
+    })
   }
 
   handleSubmit(event){
     event.preventDefault();
 
-    axios.post('/api/campuses', { name: this.state.campusInput })
-      .then(() => this.setState({campusInput: ''}))
+    axios.post('/api/campuses', {
+        name: this.state.campusInput,
+        image: this.state.campusImageUrl
+      })
+      .then(() => this.setState({
+        campusInput: '',
+        campusImageUrl: ''
+      }))
       .then(() => alert('Campus successfully added'))
-      .catch(err => alert('REQUEST FAILED: Campus name cannot be empty'));
+      .catch(err => alert('CREATION FAILED: Campus name cannot be empty and if URL added must be valid'));
   }
 
   render () {
 
     const handleChange = this.handleChange;
     const handleSubmit = this.handleSubmit;
-    const value = this.state.campusInput;
 
     return (
       <div>
@@ -44,8 +50,16 @@ export default class AddCampus extends Component {
                 <br></br>
                 <input
                   type="text"
+                  name="campusInput"
                   value= {this.state.campusInput}
                   placeholder="Enter campus name"
+                  onChange={handleChange} />
+                <br></br>
+                <input
+                  type="text"
+                  name="campusImageUrl"
+                  value= {this.state.campusImageUrl}
+                  placeholder="Optional image URL"
                   onChange={handleChange} />
             </div>
             <div className="form-group">
