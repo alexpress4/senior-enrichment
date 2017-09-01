@@ -30,7 +30,6 @@ export default class EditCampus extends Component {
       .then(() => this.setState({
         campusName: ''
       }))
-      .then(alert('Campus name successfully edited'))
       .catch(err => alert('Campus name invalid - see that the form is filled out'));
   }
 
